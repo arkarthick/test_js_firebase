@@ -1,47 +1,88 @@
-body,
-h1,
-h2 {
-    margin: 0;
-    padding: 0;
+  /*base*/
+  .active{
+	color: black !important;
+	font-weight: bold;
 }
-body {
-    background: #039be5;
-    font-family: Arial, sans-serif;
+.navbar{
+	background-color: teal !important;
 }
-h1 {
-    padding: 10px;
-    background: #ffcc00;
+.nav-item {
+	color: white !important;
 }
-/*---------------------------*/ /* Read Users */ /*---------------------------*/
-#userList {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    float: left;
-    margin: 10px;
-    border: 1px solid #4fc3fc;
+.nav-item:hover {
+	color: black !important;
 }
-#userList h2 {
-    padding: 10px;
-    margin: 0;
-    color: white;
+
+.errorlist{
+	color: red;
+	font-size: 16px;
 }
-#userList li {
-    padding: 5px 10px;
-    border-top: 1px solid #4fc3fc;
-    cursor: pointer;
-    color: white;
-    font-style: italic;
+/*customer form*/
+.field{
+	padding: 0 30px;
 }
-#userList li:hover {
-    background: #4fc3fc;
+.row{
+
+	width: 100%; 	
+	
+  display: flex !important;
+  flex-wrap: wrap !important;
 }
-#userDetail {
-    float: left;
-    width: 200px;
-    margin: 10px;
-    margin-left: 0;
-    padding: 10px;
-    border: 1px solid #4fc3fc;
-    color: white;
+.card{
+	
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin: 10px 30px;
+}
+.description {
+	margin: 10px 0 5px 15px;
+	color: grey;
+	font-size: 25px;	
+	font-style: bold;
+	font-weight: 900;
+}
+label{
+	color: teal;
+	font-weight: 900;
+}
+.asteriskField{
+	color: red;
+}
+
+.submit_btn{
+	padding: 30px 0 ;
+	text-align: center;
+}
+hr{
+	background-color: #0fefff;
+	margin: 10px;
+	padding: 0;
+}
+
+/*Home*/
+.search{
+		margin: auto;
+		width: 60%;
+		padding: 10% 0;
+		text-align: center;
+}
+
+
+
+/*customer view*/
+#telephone-number{
+	margin: auto;
+	width: 60%;
+	padding: 10px;
+	text-align: center;
+
+}
+.telephone{
+	color: black;
+	font-size: 35px;
+	font-weight: 800;
+}
+.table-wrapper{
+    width: 100%;
+    overflow: auto;
 }

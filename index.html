@@ -8,18 +8,425 @@
 
     <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
-    
 
-<script src="app.js"></script>
-    
 
-    
+    <script src="app.js"></script>
+
+
+    <!--- dat picker -->
+    <meta charset="utf-8">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <!-- jQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
 </head>
 
 <body>
-<h1 id="list"></h1>
-
-
+    <!-- <h1 id="list"></h1> -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="media/logo/logo.png" width="100" height="70" alt="" loading="lazy">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link " href="/">Home</a>
+                <a class="nav-item nav-link active" href="/AddCustomer">Add Customers</a>
+                <a class="nav-item nav-link " href="/DisplayAllCustomer">View Customers</a>
+                <a class="nav-item nav-link " href="/LogEntry">Logs</a>
+                <a class="nav-item nav-link " href="/ViewLog">View Logs</a>
+                <a class="nav-item nav-link " href="/ViewLog">Bill</a>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <form onsubmit="return addCust(this)">
+            <div class="card">
+                <span class="description">Account Details</span>
+                <hr>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_area_code" class="form-group">
+                            <label for="id_area_code" class=" requiredField">
+                                Area code<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <select name="area_code" class="select form-control" id="id_area_code">
+                                    <option value="04633">04633</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_telephone" class="form-group">
+                            <label for="id_telephone" class=" requiredField">
+                                Telephone<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="text" name="telephone" maxlength="6"
+                                    class="textinput textInput form-control" required id="id_telephone">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_location_code" class="form-group">
+                            <label for="id_location_code" class=" requiredField">
+                                Location code<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <select name="location_code" class="select form-control" id="id_location_code">
+                                    <option value="SNC">SNC</option>
+                                    <option value="VDK">VDK</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_old_telephone" class="form-group">
+                            <label for="id_old_telephone" class="">
+                                Old telephone
+                            </label>
+                            <div class="">
+                                <input type="text" name="old_telephone" maxlength="50"
+                                    class="textinput textInput form-control" id="id_old_telephone">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_plan" class="form-group">
+                            <label for="id_plan" class=" requiredField">
+                                Plan<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <select name="plan" class="select form-control" id="id_plan">
+                                    <option value="1"> 2</option>
+                                    <option value="2">1</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_status" class="form-group">
+                            <label for="id_status" class=" requiredField">
+                                Status<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <select name="status" class="select form-control" id="id_status">
+                                    <option value="ACTIVE">ACTIVE</option>
+                                    <option value="SUSPENDED">SUSPENDED</option>
+                                    <option value="DEACTIVE">DEACTIVE</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_photo" class="form-group">
+                            <label for="id_photo" class="">
+                                Photo
+                            </label>
+                            <div class="">
+                                <input type="file" name="photo" accept="image/*"
+                                    class="clearablefileinput form-control-file" id="id_photo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="description">Customer Details</span>
+                <hr>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_name" class="form-group">
+                            <label for="id_name" class=" requiredField">
+                                Name<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="text" name="name" maxlength="50" class="textinput textInput form-control"
+                                    required id="id_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_contact_person" class="form-group">
+                            <label for="id_contact_person" class="">
+                                Contact person
+                            </label>
+                            <div class="">
+                                <input type="text" name="contact_person" maxlength="50"
+                                    class="textinput textInput form-control" id="id_contact_person">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_mobile" class="form-group">
+                            <label for="id_mobile" class=" requiredField">
+                                Mobile<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="text" name="mobile" maxlength="10" class="textinput textInput form-control"
+                                    required id="id_mobile">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_home_mobile" class="form-group">
+                            <label for="id_home_mobile" class="">
+                                Home mobile
+                            </label>
+                            <div class="">
+                                <input type="text" name="home_mobile" maxlength="10"
+                                    class="textinput textInput form-control" id="id_home_mobile">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_whatsapp_number" class="form-group">
+                            <label for="id_whatsapp_number" class=" requiredField">
+                                Whatsapp number<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="text" name="whatsapp_number" maxlength="10"
+                                    class="textinput textInput form-control" required id="id_whatsapp_number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_mail" class="form-group">
+                            <label for="id_mail" class="">
+                                Mail
+                            </label>
+                            <div class="">
+                                <input type="email" name="mail" maxlength="50" class="emailinput form-control"
+                                    id="id_mail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_installation_address" class="form-group">
+                            <label for="id_installation_address" class=" requiredField">
+                                Installation address<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="text" name="installation_address" maxlength="200"
+                                    class="textinput textInput form-control" required id="id_installation_address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_billing_address" class="form-group">
+                            <label for="id_billing_address" class="">
+                                Billing address
+                            </label>
+                            <div class="">
+                                <input type="text" name="billing_address" maxlength="200"
+                                    class="textinput textInput form-control" id="id_billing_address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_area" class="form-group">
+                            <label for="id_area" class=" requiredField">
+                                Area<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="text" name="area" maxlength="50" class="textinput textInput form-control"
+                                    required id="id_area">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="description">Technial Details</span>
+                <hr>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_ont_from" class="form-group">
+                            <label for="id_ont_from" class=" requiredField">
+                                Ont from<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <select name="ont_from" class="select form-control" id="id_ont_from">
+                                    <option value="SRE">SRE</option>
+                                    <option value="OTHER">OTHER</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_ont_make" class="form-group">
+                            <label for="id_ont_make" class=" requiredField">
+                                Ont make<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <select name="ont_make" class="select form-control" id="id_ont_make">
+                                    <option value="OPTRONIX">OPTRONIX</option>
+                                    <option value="ELECTROLINE">ELECTROLINE</option>
+                                    <option value="NETLINK">NETLINK</option>
+                                    <option value="DBC">DBC</option>
+                                    <option value="SYROTECH">SYROTECH</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_ont_type" class="form-group">
+                            <label for="id_ont_type" class=" requiredField">
+                                Ont type<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <select name="ont_type" class="select form-control" id="id_ont_type">
+                                    <option value="ONT">ONT</option>
+                                    <option value="ONU">ONU</option>
+                                    <option value="ONU2">ONU2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_mac_id" class="form-group">
+                            <label for="id_mac_id" class=" requiredField">
+                                Mac id<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="text" name="mac_id" maxlength="12" class="textinput textInput form-control"
+                                    required id="id_mac_id">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_port_num" class="form-group">
+                            <label for="id_port_num" class="">
+                                Port num
+                            </label>
+                            <div class="">
+                                <input type="number" name="port_num" class="numberinput form-control" id="id_port_num">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_vlan" class="form-group">
+                            <label for="id_vlan" class=" requiredField">
+                                Vlan<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="number" name="vlan" class="numberinput form-control" min="128" max="400" required id="id_vlan">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_in_power" class="form-group">
+                            <label for="id_in_power" class="">
+                                In power
+                            </label>
+                            <div class="">
+                                <input type="number" name="in_power" class="numberinput form-control" id="id_in_power">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_power_altered_to" class="form-group">
+                            <label for="id_power_altered_to" class="">
+                                Power altered to
+                            </label>
+                            <div class="">
+                                <input type="number" name="power_altered_to" class="numberinput form-control"
+                                    id="id_power_altered_to">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_last_splitter" class="form-group">
+                            <label for="id_last_splitter" class="">
+                                Last splitter
+                            </label>
+                            <div class="">
+                                <input type="number" name="last_splitter" class="numberinput form-control"
+                                    id="id_last_splitter">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 field">
+                        <div id="div_id_core_color" class="form-group">
+                            <label for="id_core_color" class=" requiredField">
+                                Core color<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <select name="core_color" class="select form-control" id="id_core_color">
+                                    <option value="BLUE">BLUE</option>
+                                    <option value="BROWN">BROWN</option>
+                                    <option value="GREEN">GREEN</option>
+                                    <option value="ORANGE">ORANGE</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 field">
+                        <div id="div_id_activated_on" class="form-group">
+                            <label for="datepicker" class=" requiredField">
+                                Activated on<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="text" name="activated_on" id="datepicker" class="dateinput form-control"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="submit_btn">
+                    <button class="btn btn-primary">Create Account</button>
+                </div>
+        </form>
+    </div>
 </body>
 
 </html>
