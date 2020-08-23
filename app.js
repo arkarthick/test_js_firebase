@@ -35,35 +35,39 @@ firebase.initializeApp(firebaseConfig);
 //   document.getElementById('list').innerText = snap.val()
 //   // document.getElementById('list').innerText = JSON.stringify(snap.val().SNC.tel_num['290903'],null,1)
 // });
-var dbRef = firebase.database().ref('Customers')
+
+
+
+var dbRef = firebase.database().ref()
+var customerRef = dbRef.child('Customers')
 var customer = {}
 function addCust(form){
     customer[form.telephone.value] = {
     telephone : form.area_code.value+'-'+form.telephone.value,
     exchannge : form.location_code.value,
     old_telephone : form.old_telephone.value,
-    plan : form.plan.value,
-    status : form.status.value,
-    account_name : form.name.value,
-    conact_person: form.contact_person.value,
-    mobile:form.mobile.value,
-    home_mobile:form.home_mobile.value,
-    whatsapp : form.whatsapp_number.value,
-    email : form.mail.value,
-    installation_address : form.installation_address.value,
-    billing_address:form.billing_address.value,
-    area:form.area.value,
-    ont_provider:form.ont_from.value,
-    ont_make:form.ont_make.value,
-    mac_id : form.mac_id.value,
-    port : form.port_num.value,
-    vlan : form.vlan.value,
-    in_power : form.in_power.value,
-    power_altered_to : form.power_altered_to.value,
-    core_color : form.core_color.value
+    // plan : form.plan.value,
+    // status : form.status.value,
+    // account_name : form.name.value,
+    // conact_person: form.contact_person.value,
+    // mobile:form.mobile.value,
+    // home_mobile:form.home_mobile.value,
+    // whatsapp : form.whatsapp_number.value,
+    // email : form.mail.value,
+    // installation_address : form.installation_address.value,
+    // billing_address:form.billing_address.value,
+    // area:form.area.value,
+    // ont_provider:form.ont_from.value,
+    // ont_make:form.ont_make.value,
+    // mac_id : form.mac_id.value,
+    // port : form.port_num.value,
+    // vlan : form.vlan.value,
+    // in_power : form.in_power.value,
+    // power_altered_to : form.power_altered_to.value,
+    // core_color : form.core_color.value
     }
   
   console.log(customer)
-  dbRef.set(customer)
+  customerRef.update(customer)
   return false
 }
