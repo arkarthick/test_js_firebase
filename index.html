@@ -2,23 +2,25 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
 
-
+    <!-- private -->
     <script src="app.js"></script>
-
+    <script src="firebase.js"></script>
 
     <!--- dat picker -->
-    <meta charset="utf-8">
-    <!-- CSS only -->
+
+    <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+
     <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -30,7 +32,7 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
     <!-- jQuery -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     <script>
@@ -41,27 +43,62 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">
-            <img src="media/logo/logo.png" width="100" height="70" alt="" loading="lazy">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link " href="/">Home</a>
-                <a class="nav-item nav-link active" href="/AddCustomer">Add Customers</a>
-                <a class="nav-item nav-link " href="/DisplayAllCustomer">View Customers</a>
-                <a class="nav-item nav-link " href="/LogEntry">Logs</a>
-                <a class="nav-item nav-link " href="/ViewLog">View Logs</a>
-                <a class="nav-item nav-link " href="/ViewLog">Bill</a>
+    <!-- Navigation Bar -->
+    <div id="navigation_bar">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#">
+                <img src="media/logo/logo.png" width="100" height="70" alt="" loading="lazy">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link " id="defaultOpen" onClick='openPage("home")'
+                        onLoad='openPage("home")'>Home</a>
+                    <a class="nav-item nav-link " onClick='openPage("add_customer_form")'>Add Customers</a>
+                    <a class="nav-item nav-link " onClick='openPage("view_all_customer")'>View Customers</a>
+                    <!-- <a class="nav-item nav-link " onClick='openPage(,this)'>Logs</a>
+                    <a class="nav-item nav-link " onClick='openPage(,this)'>View Logs</a>
+                    <a class="nav-item nav-link " onClick='openPage(,this)'>Bill</a> -->
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Home -->
+    <div id="home" class="tabcontent">
+        <div class="card">
+            <form action="" method="post">
+                <input type="hidden" name="csrfmiddlewaretoken"
+                    value="YiS0Eh5oGCo4uBWBZ324yqbvrZ19dSfHSdkvp0p0luWe3VTKQ5YrvgGBfLsflIQj">
+                <div class="input-group mb-3 search telephone-search">
+                    <input type="text" class="form-control" name='telephone' placeholder="Telephone number"
+                        aria-label="Telephone number" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">View Details</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card">
+            <span class="description">Vlan Details</span>
+            <hr>
+            <div class="row">
+                <div class="col-6 field">
+                    <span>used vlan </span>
+                </div>
+                <div class="col-6 field">
+                    <h2>Next Vlan</h4><br>
+                        <h1>sdef</h1>
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
+
     <!-- Customer form -->
-    <div id="add_customer_form">
+    <div id="add_customer_form" class="tabcontent">
         <form onsubmit="return addCust(this)">
             <div class="card">
                 <span class="description">Account Details</span>
@@ -117,7 +154,7 @@
                         </div>
                     </div>
                 </div>
-               <!--  <div class="row">
+                <!--  <div class="row">
                     <div class="col-6 field">
                         <div id="div_id_plan" class="form-group">
                             <label for="id_plan" class=" requiredField">
@@ -422,13 +459,28 @@
                     </div>
                 </div>
             </div> -->
-                <div class="submit_btn">
-                    <button class="btn btn-primary">Create Account</button>
-                </div>
+            <div class="submit_btn">
+                <button class="btn btn-primary">Create Account</button>
+            </div>
         </form>
     </div>
 
-    
+    <!-- view customer -->
+    <div id="view_all_customer" class="tabcontent">
+        <table class="table table-striped">
+            <tr>
+                <th>Telephone</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Status</th>
+                <th>Area</th>
+                <th>MAC ID</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+
+    </script>
 </body>
 
 </html>

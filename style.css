@@ -1,4 +1,7 @@
   /*base*/
+  .tabcontent{
+	  display: none;
+  }
   .active{
 	color: black !important;
 	font-weight: bold;
@@ -8,6 +11,7 @@
 }
 .nav-item {
 	color: white !important;
+	cursor: pointer !important;
 }
 .nav-item:hover {
 	color: black !important;
